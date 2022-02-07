@@ -10,3 +10,9 @@ docker run python:3 python -c 'import sys; print(sys.version)'
 # Run Nginx:
 docker run --name docker-nginx -d -p 80:80 nginx:alpine
 Brows to http://localhost:80
+
+
+# Install docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose --version
