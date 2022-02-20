@@ -1,0 +1,18 @@
+pipeline{
+    agent {
+        node {
+         label 'slave01'
+        }
+    }
+   parameters {
+        string(name: 'ScriptPath', description: 'Path to your python script')
+    }
+    stages{
+        stage('test'){
+            steps{
+                echo "${params.ScriptPath}"
+                sh "python3.6 ${params.ScriptPath}"
+            }
+        }
+    }
+}

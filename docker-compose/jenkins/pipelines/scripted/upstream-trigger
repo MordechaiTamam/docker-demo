@@ -1,0 +1,24 @@
+properties([pipelineTriggers([upstream('param-pipeline, ')])])
+def mvnHome = 'I Setted it'
+node {
+    stage('Preparation') { // for display purposes
+        bat(/echo Preparation/)
+    }
+    stage('Build') {
+        // Run the maven build
+        withEnv(["MVN_HOME=$mvnHome"]) {
+            if (isUnix()) {
+                sh 'echo XXX'
+            } else {
+                bat(/echo $MVN_HOME/)
+            }
+        }
+    }
+    stage('Write File') {
+        writeFile file: 'modi-tmp.txt', text: 'Just a content'
+    }
+
+    stage('Read File'){
+        readFile 'modi-tmp.txt'
+    }
+}
